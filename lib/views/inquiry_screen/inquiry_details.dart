@@ -11,7 +11,7 @@ import '../../const/const.dart';
 
 class InquiryDetailsScreen extends StatefulWidget {
   final dynamic data;
-  const InquiryDetailsScreen({this.data});
+  const InquiryDetailsScreen({super.key, this.data});
 
   @override
   State<InquiryDetailsScreen> createState() => _InquiryDetailsScreenState();
@@ -43,7 +43,7 @@ class _InquiryDetailsScreenState extends State<InquiryDetailsScreen> {
             var data = snapshot.data!.docs[0];
             return SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
