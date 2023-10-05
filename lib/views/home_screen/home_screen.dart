@@ -38,34 +38,47 @@ class HomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Center(
-                    child: Wrap(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        dashboardButton(context,
-                            title: dashboard,
-                            count: "${data.length}",
-                            icon: icProducts),
-                        dashboardButton(context,
-                            title: inquiry,
-                            count:
-                                "${inquiryController.inquiryAnalytics["total_inquires"]}",
-                            icon: icOrders),
-                        dashboardButton(context,
-                            title: " Payments",
-                            count:
-                                "${inquiryController.inquiryAnalytics["total_payment"]}",
-                            icon: icOrders),
-                        dashboardButton(context,
-                            title: "Delievered",
-                            count:
-                                "${inquiryController.inquiryAnalytics["total_delivered"]}",
-                            icon: icOrders),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Wrap(
+                        children: [
+                          dashboardButton(context,
+                              title: dashboard,
+                              count: "${data.length}" ?? '',
+                              icon: icProducts),
+                          10.widthBox,
+                          dashboardButton(context,
+                              title: inquiry,
+                              count:
+                                  "${inquiryController.inquiryAnalytics["total_inquires"]}" ??
+                                      '',
+                              icon: icOrders),
+                          10.widthBox,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: dashboardButton(context,
+                                title: " Payments",
+                                count:
+                                    "${inquiryController.inquiryAnalytics["total_payment"]}" ??
+                                        '',
+                                icon: icOrders),
+                          ),
+                          10.widthBox,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: dashboardButton(context,
+                                title: "Delievered",
+                                count:
+                                    "${inquiryController.inquiryAnalytics["total_delivered"]}" ??
+                                        '',
+                                icon: icOrders),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   20.heightBox,
 
-                  const AdvertisementSlider(),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   //   children: [
@@ -80,7 +93,11 @@ class HomeScreen extends StatelessWidget {
                     thickness: 2,
                   ),
                   10.heightBox,
-                  boldText(text: yourServices, color: darkGrey, size: 16.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: boldText(
+                        text: 'Featured Service', color: darkGrey, size: 18.0),
+                  ),
                   20.heightBox,
                   Expanded(
                     // Wrap the ListView with Expanded
