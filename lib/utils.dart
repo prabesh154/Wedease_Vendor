@@ -10,17 +10,23 @@ getRowData(data, value) {
     childrens.add(Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        normalText(
-          text: data[i],
-          size: 16.0,
-          color: black,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: normalText(
+            text: data[i],
+            size: 16.0,
+            color: black,
+          ),
         ),
         10.widthBox,
-        Flexible(
-          child: normalText(
-            text: value[i],
-            size: 16.0,
-            color: fontGrey,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Flexible(
+            child: normalText(
+              text: value[i],
+              size: 16.0,
+              color: fontGrey,
+            ),
           ),
         ),
       ],
