@@ -53,8 +53,8 @@ class InquiryScreen extends StatelessWidget {
                               gradient:
                                   LinearGradient(colors: [white, fontGrey]),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(16))),
-                          margin: const EdgeInsets.only(bottom: 4),
+                                  BorderRadius.all(Radius.circular(16.0))),
+                          margin: const EdgeInsets.only(bottom: 4.0),
                           child: ListTile(
                             onTap: () {
                               Get.to(() =>
@@ -104,7 +104,8 @@ class InquiryScreen extends StatelessWidget {
                                     ),
                                     10.widthBox,
                                     boldText(
-                                      text: controller.confirmbooked.value
+                                      text: data[index]['inquiry_confirmed']
+                                          // text: controller.confirmbooked.value
                                           ? "Confirmed"
                                           : "Not confirmed",
                                       color: red,
