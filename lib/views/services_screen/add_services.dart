@@ -51,12 +51,15 @@ class AddServices extends StatelessWidget {
             style: TextStyle(fontSize: 16.0, color: Colors.black),
           ),
           actions: [
-            controller.isloading(false)
-                ? loadingIndicator(circleColor: Colors.black)
+            controller.isloading()
+                ? loadingIndicator(
+                    circleColor: const Color.fromARGB(255, 17, 119, 215))
                 : TextButton(
                     onPressed: () async {
                       // Check if the form is valid before saving
                       if (isFormValid(controller)) {
+                        controller.isloading(true);
+
                         await controller.uploadImages();
                         await controller.uploadServices(context);
 
@@ -67,18 +70,15 @@ class AddServices extends StatelessWidget {
                         controller.spriceController.clear();
                         controller.sdescriptionController.clear();
 
-                        // Clear the selected category and subcategory values
                         controller.categoryvalue.value = '';
                         controller.subcategoryvalue.value = '';
 
-                        // Clear the selected images
                         controller.clearSelectedImages();
+                        controller.isloading(false);
 
                         Get.back();
                         VxToast.show(context, msg: "Updated Successfully");
                       } else {
-                        // Show an error message or handle validation error
-                        // For example, you can show a SnackBar with an error message.
                         Get.snackbar(
                           "Error",
                           "Please fill in all fields and select images.",
