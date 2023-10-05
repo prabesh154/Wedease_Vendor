@@ -1,0 +1,17 @@
+{
+  "categories": [
+    {
+      "name": "Venues",
+      "subcategory": ["Party Palace","Hotels","Resorts"]
+    },
+    {
+      "name": "Photographers",
+      "subcategory": ["Wedding Photographers", "Casual Photographers"]
+    },
+    {
+      "name": "Makeup Artists",
+      "subcategory": ["Bridal Makeup", "Casual Makeup"]
+    }
+    
+  ]
+}
