@@ -1,6 +1,5 @@
 import 'package:wedeaseseller/const/const.dart';
 import 'package:wedeaseseller/views/auth_screen/login_screen.dart';
-import 'package:wedeaseseller/views/home_screen/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
