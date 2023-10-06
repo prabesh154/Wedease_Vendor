@@ -55,24 +55,43 @@ class ServicesController extends GetxController {
     }
   }
 
-  pickImage(index, context) async {
+  // pickImage(index, context) async {
+  //   try {
+  //     final img = await ImagePicker()
+  //         .pickImage(source: ImageSource.gallery, imageQuality: 100);
+  //     if (img == null) {
+  //       return "No Image";
+  //     } else {
+  //       sImagesList[index] = File(img.path);
+  //     }
+  //   } catch (e) {
+  //     VxToast.show(context, msg: e.toString());
+  //   }
+  // }
+
+  Future<File?> pickImage(int index, BuildContext context) async {
     try {
-      final img = await ImagePicker()
-          .pickImage(source: ImageSource.gallery, imageQuality: 100);
+      final img = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 100,
+      );
       if (img == null) {
-        return "No Image";
+        return null; // Return null when no image is selected
       } else {
         sImagesList[index] = File(img.path);
+        return sImagesList[index]; // Return the selected File
       }
     } catch (e) {
       VxToast.show(context, msg: e.toString());
+      return null; // Return null in case of an error
     }
   }
 
-  uploadImages() async {
+  Future<void> uploadImages() async {
     sImagesLinks.clear();
     for (var item in sImagesList) {
-      if (item != null) {
+      if (item is File) {
+        // Make sure to check if it's a File before processing
         var filename = basename(item.path);
         var destination = 'images/seller_vendors/${currentUser!.uid}/$filename';
         Reference ref = FirebaseStorage.instance.ref().child(destination);
@@ -83,7 +102,22 @@ class ServicesController extends GetxController {
     }
   }
 
-  uploadServices(context) async {
+  // uploadImages() async {
+  //   sImagesLinks.clear();
+  //   for (var item in sImagesList) {
+  //     if (item != null) {
+  //       var filename = basename(item.path);
+  //       var destination = 'images/seller_vendors/${currentUser!.uid}/$filename';
+  //       Reference ref = FirebaseStorage.instance.ref().child(destination);
+  //       await ref.putFile(item);
+  //       var n = await ref.getDownloadURL();
+  //       sImagesLinks.add(n);
+  //     }
+  //   }
+  // }
+
+  uploadServices(sName, sPrice, sFeatures, sLocation, sDescription, sCategory,
+      sImgs, sSubcategory, context) async {
     var store = firestore.collection(servicesCollection).doc();
     await store.set({
       'featured_id': '',
@@ -104,6 +138,28 @@ class ServicesController extends GetxController {
     isloading(false);
     VxToast.show(context, msg: "Services uploaded");
   }
+
+  // uploadAddServices(context) async {
+  //   var store = firestore.collection(servicesCollection).doc();
+  //   await store.set({
+  //     'featured_id': '',
+  //     'is_featured': false,
+  //     's_category': categoryvalue.value,
+  //     's_description': sdescriptionController.text,
+  //     's_features': sfeaturesController.text,
+  //     's_imgs': FieldValue.arrayUnion(sImagesLinks),
+  //     's_location': slocationController.text,
+  //     's_name': snameController.text,
+  //     's_price': spriceController.text,
+  //     's_rating': "5.0",
+  //     's_subcategory': subcategoryvalue.value,
+  //     's_wishlist': FieldValue.arrayUnion([]),
+  //     'vendor_id': currentUser!.uid,
+  //     's_seller': Get.find<HomeController>().username,
+  //   });
+  //   isloading(false);
+  //   VxToast.show(context, msg: "Services uploaded");
+  // }
 
   addFeatured(docId) async {
     await firestore.collection(servicesCollection).doc(docId).set({
