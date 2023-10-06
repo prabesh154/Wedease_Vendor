@@ -39,7 +39,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         backgroundColor: purpleColor,
         appBar: AppBar(
           title: boldText(text: editProfile, size: 16.0),
