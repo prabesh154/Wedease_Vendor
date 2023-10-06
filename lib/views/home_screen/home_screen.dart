@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                               icon: icProducts),
                           10.widthBox,
                           dashboardButton(context,
-                              title: inquiry,
+                              title: 'Confirmed Inquires',
                               count:
                                   "${inquiryController.inquiryAnalytics["total_inquires"]}" ??
                                       '',
@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: dashboardButton(context,
-                                title: " Payments",
+                                title: " No. of Payments",
                                 count:
                                     "${inquiryController.inquiryAnalytics["total_payment"]}" ??
                                         '',
@@ -67,7 +67,7 @@ class HomeScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: dashboardButton(context,
-                                title: "Delievered",
+                                title: "No. of Delivered",
                                 count:
                                     "${inquiryController.inquiryAnalytics["total_delivered"]}" ??
                                         '',
@@ -78,16 +78,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   20.heightBox,
-
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //   children: [
-                  //     dashboardButton(context,
-                  //         title: rating, count: '34', icon: icStar),
-                  //     dashboardButton(context,
-                  //         title: potentialSales, count: '94', icon: icOrders),
-                  //   ],
-                  // ),
                   10.heightBox,
                   const Divider(
                     thickness: 2,
@@ -100,14 +90,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                   20.heightBox,
                   Expanded(
-                    // Wrap the ListView with Expanded
                     child: ListView(
                       physics: const BouncingScrollPhysics(),
                       children: List.generate(
                           data.length,
                           (index) => data[index]['is_featured']
 
-                              //const SizedBox()
                               ? ListTile(
                                   onTap: () {
                                     Get.to(() =>

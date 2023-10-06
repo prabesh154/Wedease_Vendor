@@ -23,31 +23,26 @@ class LoginScreen extends StatelessWidget {
             children: [
               20.heightBox,
               normalText(text: welcome, size: 18.0),
+              10.heightBox,
               Row(
                 children: [
-                  Image.asset(
-                    icLogo,
-                    width: 70.0,
-                    height: 70.0,
-                  )
-                      .box
-                      .border(color: white)
-                      .rounded
-                      .padding(const EdgeInsets.all(8.0))
-                      .make(),
-                  10.widthBox,
-                  boldText(text: "Vendor App", size: 20.0),
+                  boldText(
+                      text: "WedEase Vendor App",
+                      size: 20.0,
+                      color: Colors.black),
                 ],
               ),
               60.heightBox,
-              const Text(
-                'Login to Vendor account',
-                style: TextStyle(
-                    fontWeight: FontWeight.w400, fontSize: 20, color: white),
+              const Center(
+                child: Text(
+                  'Login to Vendor account',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 20, color: white),
+                ),
               ),
-              10.heightBox,
+              40.heightBox,
               Container(
-                padding: const EdgeInsets.only(bottom: 12.0),
+                padding: const EdgeInsets.all(12.0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(16.0), color: white),
                 child: Obx(
@@ -81,17 +76,10 @@ class LoginScreen extends StatelessWidget {
                           border: InputBorder.none,
                         ),
                       ),
-                      Divider(
+                      const Divider(
                         color: purpleColor,
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: normalText(
-                              text: forgotPassword, color: purpleColor),
-                        ),
-                      ),
+                      
                       30.heightBox,
                       SizedBox(
                         width: context.screenWidth - 100,

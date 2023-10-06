@@ -38,7 +38,9 @@ class _InquiryDetailsScreenState extends State<InquiryDetailsScreen> {
             return loadingIndicator();
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             // Handle the case where there is no data or the data list is empty.
-            return const Text('No data available.');
+            return const Center(
+                child: Text(
+                    'No data available.You might have unlisted this service'));
           } else {
             var data = snapshot.data!.docs[0];
             return SingleChildScrollView(
@@ -63,8 +65,8 @@ class _InquiryDetailsScreenState extends State<InquiryDetailsScreen> {
                           widget.data["inquiry_name"],
                           widget.data["inquiry_email"],
                           widget.data["inquiry_phone"],
-                          widget.data["inquiry_location"],
-                          widget.data["inquiry_message"]
+                          widget.data["inquiry_location"] ?? '',
+                          widget.data["inquiry_message"] ?? ''
                         ]
 
                         //
@@ -73,23 +75,40 @@ class _InquiryDetailsScreenState extends State<InquiryDetailsScreen> {
                     // End of Inquiry info
 
                     // Start of Service info
+                    const Divider(
+                      thickness: 2.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: boldText(
+                          text: 'Inquired Service:',
+                          size: 18.0,
+                          color: const Color.fromARGB(255, 0, 0, 0)),
+                    ),
 
-                    ListTile(
-                      onTap: () {
-                        Get.to(() => ServiceDetails(
-                              data: data,
-                            ));
-                      },
-                      leading: Image.network(data['s_imgs'][0],
-                          width: 100, fit: BoxFit.cover),
-                      title:
-                          boldText(text: "${data['s_name']}", color: fontGrey),
-                      subtitle: Row(
-                        children: [
-                          normalText(
-                              text: "${data['s_price']}", color: fontGrey),
-                          10.widthBox,
-                        ],
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+
+                    SizedBox(
+                      height: 100.0,
+                      child: ListTile(
+                        onTap: () {
+                          Get.to(() => ServiceDetails(
+                                data: data,
+                              ));
+                        },
+                        leading: Image.network(data['s_imgs'][0],
+                            width: 110, fit: BoxFit.fill),
+                        title: boldText(
+                            text: "${data['s_name']}", color: fontGrey),
+                        subtitle: Row(
+                          children: [
+                            normalText(
+                                text: "${data['s_price']}", color: fontGrey),
+                            10.widthBox,
+                          ],
+                        ),
                       ),
                     ),
 
@@ -129,56 +148,70 @@ class _InquiryDetailsScreenState extends State<InquiryDetailsScreen> {
       (controller.confirmbooked.value)
           ? Visibility(
               visible: controller.confirmbooked.value,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Service Status:',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      normalText(
-                          text: 'Payment Received:', size: 18.0, color: black),
-                      //   Switch(
-                      //     value: controller.onPayment.value,
-                      //     onChanged: (value) {
-                      //     controller.onPayment.value=value;
-                      // controller.changeStatus(title:"inquiry_on_payment", status:value, docID:widget.widget..id);
-                      //     },
-                      //   ),
-                      Switch(
-                        value: controller.onPayment.value,
-                        onChanged: (value) async {
-                          controller.onPayment.value = value;
-                          await controller.changeStatus(
-                              title: "inquiry_on_payment",
-                              status: value,
-                              docID: data['inquiry_code']);
-                          setState(() {});
-                        },
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      normalText(
-                          text: 'Service Delivered:', size: 18.0, color: black),
-                      Switch(
-                        value: controller.onDelivered.value,
-                        onChanged: (value) {
-                          controller.onDelivered.value = value;
-                          controller.changeStatus(
-                              title: "inquiry_on_delivered",
-                              status: value,
-                              docID: data['inquiry_code']);
-                          setState(() {});
-                        },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        'Service Status:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        normalText(
+                            text: 'Payment Received:',
+                            size: 18.0,
+                            color: black),
+                        //   Switch(
+                        //     value: controller.onPayment.value,
+                        //     onChanged: (value) {
+                        //     controller.onPayment.value=value;
+                        // controller.changeStatus(title:"inquiry_on_payment", status:value, docID:widget.widget..id);
+                        //     },
+                        //   ),
+                        Switch(
+                          value: controller.onPayment.value,
+                          onChanged: (value) async {
+                            controller.onPayment.value = value;
+                            await controller.changeStatus(
+                                title: "inquiry_on_payment",
+                                status: value,
+                                docID: data['inquiry_code']);
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: Row(
+                        children: [
+                          normalText(
+                              text: 'Service Delivered:',
+                              size: 18.0,
+                              color: black),
+                          Switch(
+                            value: controller.onDelivered.value,
+                            onChanged: (value) {
+                              controller.onDelivered.value = value;
+                              controller.changeStatus(
+                                  title: "inquiry_on_delivered",
+                                  status: value,
+                                  docID: data['inquiry_code']);
+                              setState(() {});
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           : const Text("")
