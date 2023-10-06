@@ -60,58 +60,44 @@ class VendorSettings extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: boldText(
-                        text: 'Name',
-                        size: 18.0,
-                      ),
-                    ),
-                    8.heightBox,
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 8.0),
+                    //   child: boldText(
+                    //     text: 'Name',
+                    //     size: 18.0,
+                    //   ),
+                    // ),
+                    15.heightBox,
                     customTextField(
                       hint: controller.snapshotData['vendor_name'],
                       controller: controller.vendorNameController,
+                      label: "Name",
                     ),
-                    10.heightBox,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: boldText(
-                        text: 'Address',
-                        size: 18.0,
-                      ),
-                    ),
-                    8.heightBox,
+                    15.heightBox,
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 8.0),
+                    //   child: boldText(
+                    //     text: 'Address',
+                    //     size: 18.0,
+                    //   ),
+                    // ),
                     customTextField(
-                      hint: controller.snapshotData['vendor_address'],
-                      controller: controller.vendorAddressController,
-                    ),
-                    10.heightBox,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: boldText(
-                        text: 'Mobile Number',
-                        size: 18.0,
-                      ),
-                    ),
-                    8.heightBox,
+                        hint: controller.snapshotData['vendor_address'],
+                        controller: controller.vendorAddressController,
+                        label: "Address"),
+                    15.heightBox,
+
                     customTextField(
-                      hint: controller.snapshotData['vendor_mobile'],
-                      controller: controller.vendorMobileController,
-                    ),
-                    10.heightBox,
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: boldText(
-                        text: 'Your Info and Description',
-                        size: 18.0,
-                      ),
-                    ),
-                    8.heightBox,
+                        hint: controller.snapshotData['vendor_mobile'],
+                        controller: controller.vendorMobileController,
+                        label: "Mobile Number"),
+                    15.heightBox,
+
                     customTextField(
-                      isDesc: true,
-                      hint: controller.snapshotData['vendor_desc'],
-                      controller: controller.vendorDescController,
-                    ),
+                        isDesc: true,
+                        hint: controller.snapshotData['vendor_desc'],
+                        controller: controller.vendorDescController,
+                        label: "Description"),
                   ],
                 ),
               );
