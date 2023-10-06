@@ -1,6 +1,6 @@
 import 'package:wedeaseseller/controllers/inquiry_controller.dart';
 import 'package:wedeaseseller/services/store_services.dart';
-import 'package:wedeaseseller/views/home_screen/slider_image.dart';
+//import 'package:wedeaseseller/views/home_screen/slider_image.dart';
 import 'package:wedeaseseller/views/services_screen/services_detail.dart';
 import 'package:wedeaseseller/views/widgets/appbar_widget.dart';
 import 'package:wedeaseseller/views/widgets/dashboard_button.dart';
@@ -37,43 +37,48 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Wrap(
-                        children: [
-                          dashboardButton(context,
-                              title: dashboard,
-                              count: "${data.length}" ?? '',
-                              icon: icProducts),
-                          10.widthBox,
-                          dashboardButton(context,
-                              title: 'Confirmed Inquires',
-                              count:
-                                  "${inquiryController.inquiryAnalytics["total_inquires"]}" ??
-                                      '',
-                              icon: icOrders),
-                          10.widthBox,
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: dashboardButton(context,
-                                title: " No. of Payments",
+                  SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Wrap(
+                          children: [
+                            dashboardButton(context,
+                                title: dashboard,
+                                count: "${data.length}" ?? '',
+                                icon: icProducts),
+                            10.widthBox,
+                            dashboardButton(context,
+                                title: 'Confirmed Inquires',
                                 count:
-                                    "${inquiryController.inquiryAnalytics["total_payment"]}" ??
+                                    "${inquiryController.inquiryAnalytics["total_inquires"]}" ??
                                         '',
                                 icon: icOrders),
-                          ),
-                          10.widthBox,
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8.0),
-                            child: dashboardButton(context,
-                                title: "No. of Delivered",
-                                count:
-                                    "${inquiryController.inquiryAnalytics["total_delivered"]}" ??
-                                        '',
-                                icon: icOrders),
-                          ),
-                        ],
+                            10.widthBox,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: dashboardButton(context,
+                                  title: " No. of Payments",
+                                  count:
+                                      "${inquiryController.inquiryAnalytics["total_payment"]}" ??
+                                          '',
+                                  icon: icOrders),
+                            ),
+                            10.widthBox,
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 8.0),
+                              child: dashboardButton(context,
+                                  title: "No. of Delivered",
+                                  count:
+                                      "${inquiryController.inquiryAnalytics["total_delivered"]}" ??
+                                          '',
+                                  icon: icOrders),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -95,7 +100,6 @@ class HomeScreen extends StatelessWidget {
                       children: List.generate(
                           data.length,
                           (index) => data[index]['is_featured']
-
                               ? ListTile(
                                   onTap: () {
                                     Get.to(() =>
