@@ -28,7 +28,7 @@ class ServicesScreen extends StatelessWidget {
         onPressed: () async {
           controller.getCategories();
           controller.populateCategoryList();
-          Get.to(() => const AddServices());
+          Get.to(() => AddServices());
         },
         backgroundColor: purpleColor,
         child: const Icon(Icons.add),
@@ -134,9 +134,9 @@ class ServicesScreen extends StatelessWidget {
                                       break;
                                     case 1:
                                       if (i == 1) {
-                                        // Get.to(() => EditService(
-                                        //     data: data[
-                                        //         index])); // Pass the service data to the EditServiceScreen
+                                        Get.to(() => EditService(
+                                            data: data[
+                                                index])); // Pass the service data to the EditServiceScreen
                                       }
                                       break;
 
