@@ -8,7 +8,8 @@ Widget customTextField(
     isDesc = false,
     obscureText,
     onChanged,
-    initialValue}) {
+    initialValue,
+    validator}) {
   return TextFormField(
     style: const TextStyle(color: black),
     maxLines: isDesc ? 4 : 1,
@@ -17,12 +18,12 @@ Widget customTextField(
     initialValue: initialValue,
     decoration: InputDecoration(
         isDense: true,
-        // label: normalText(text: label, color: black),
-        // enabledBorder: OutlineInputBorder(
-        //     borderRadius: BorderRadius.circular(12),
-        //     borderSide: const BorderSide(
-        //       color: black,
-        //     )),
+        label: normalText(text: label, color: black),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: black,
+            )),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
