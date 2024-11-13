@@ -8,7 +8,7 @@ import 'package:wedeaseseller/views/services_screen/services_screen.dart';
 import '../../const/const.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}); // Remove 'const' here
+  const Home({Key? key}); 
 
   @override
   Widget build(BuildContext context) {

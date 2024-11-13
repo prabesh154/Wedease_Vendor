@@ -1,6 +1,5 @@
 import 'package:wedeaseseller/controllers/inquiry_controller.dart';
 import 'package:wedeaseseller/services/store_services.dart';
-//import 'package:wedeaseseller/views/home_screen/slider_image.dart';
 import 'package:wedeaseseller/views/services_screen/services_detail.dart';
 import 'package:wedeaseseller/views/widgets/appbar_widget.dart';
 import 'package:wedeaseseller/views/widgets/dashboard_button.dart';
